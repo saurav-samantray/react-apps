@@ -32,3 +32,5 @@ export const notificationReducer =(state=initalState,action)=>{
     }
 }
 
+export default notificationReducer
+

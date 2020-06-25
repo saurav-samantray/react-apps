@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useHistory, Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -29,7 +29,14 @@ const Topbar = props => {
 
   const classes = useStyles();
 
+  const history = useHistory();
+
   const [notifications] = useState([]);
+
+  const handleLogout = event =>{
+        localStorage.removeItem("token");
+        history.push('/sign-in')
+  }
 
   return (
     <AppBar
@@ -55,12 +62,14 @@ const Topbar = props => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <form onClick={handleLogout}>
           <IconButton
             className={classes.signOutButton}
             color="inherit"
           >
             <InputIcon />
           </IconButton>
+          </form>
         </Hidden>
         <Hidden lgUp>
           <IconButton

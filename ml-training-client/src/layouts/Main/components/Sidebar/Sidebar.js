@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
+//import PeopleIcon from '@material-ui/icons/People';
 //import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import ImageIcon from '@material-ui/icons/Image';
+//import TextFieldsIcon from '@material-ui/icons/TextFields';
+//import ImageIcon from '@material-ui/icons/Image';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+//import LockOpenIcon from '@material-ui/icons/LockOpen';
 import BuildIcon from '@material-ui/icons/Build';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 import { Profile, SidebarNav } from './components';
 
@@ -55,15 +56,20 @@ const Sidebar = props => {
       icon: <BuildIcon />
     },
     {
+      title: 'Projects',
+      href: '/projects',
+      icon: <DescriptionIcon />
+    }/*,
+    {
       title: 'Users',
       href: '/users',
       icon: <PeopleIcon />
-    }/*,
+    },
     {
       title: 'Products',
       href: '/products',
       icon: <ShoppingBasketIcon />
-    }*/,
+    },
     {
       title: 'Authentication',
       href: '/sign-in',
@@ -73,12 +79,7 @@ const Sidebar = props => {
       title: 'Typography',
       href: '/typography',
       icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Icons',
-      href: '/icons',
-      icon: <ImageIcon />
-    },
+    }*/,
     {
       title: 'Account',
       href: '/account',

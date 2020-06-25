@@ -40,11 +40,11 @@ const AccountProfile = props => {
   const classes = useStyles();
 
   const user = {
-    name: 'Shen Zhi',
-    city: 'Los Angeles',
-    country: 'USA',
-    timezone: 'GTM-7',
-    avatar: '/images/avatars/avatar_11.png'
+    name: 'Saurav Samantray',
+    city: 'Bangalore',
+    country: 'India',
+    timezone: 'IST',
+    avatar: '/images/avatars/blank_avatar.png'
   };
 
   return (
@@ -59,7 +59,7 @@ const AccountProfile = props => {
               gutterBottom
               variant="h2"
             >
-              John Doe
+              Saurav Samantray
             </Typography>
             <Typography
               className={classes.locationText}

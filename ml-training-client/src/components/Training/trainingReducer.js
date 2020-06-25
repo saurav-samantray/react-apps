@@ -5,7 +5,7 @@ const initialState ={
     data:{},
     error:""
 }
-let updatedTrainingList;
+
  const trainingReducer = (state=initialState,action)=>{
     switch(action.type) {
         case actionTypes.FETCH_TRAININGS_ACTION:

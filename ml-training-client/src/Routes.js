@@ -18,6 +18,10 @@ import {
   NotFound as NotFoundView
 } from './views';
 
+import { 
+  ProjectHome as ProjectHomeView 
+} from './views/Project';
+
 const Routes = () => {
   return (
     <Switch>
@@ -91,6 +95,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/not-found"
+      />
+      <RouteWithLayout
+        component={ProjectHomeView}
+        exact
+        layout={MainLayout}
+        path="/projects"
       />
       <Redirect to="/not-found" />
     </Switch>

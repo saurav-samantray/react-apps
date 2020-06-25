@@ -23,12 +23,12 @@ const AccountDetails = props => {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstName: 'Shen',
-    lastName: 'Zhi',
-    email: 'shen.zhi@devias.io',
+    firstName: 'Saurav',
+    lastName: 'Samantray',
+    email: 'saurav@litmus7.com',
     phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    state: 'Karnataka',
+    country: 'India'
   });
 
   const handleChange = event => {
@@ -40,16 +40,20 @@ const AccountDetails = props => {
 
   const states = [
     {
-      value: 'alabama',
-      label: 'Alabama'
+      value: 'Karnataka',
+      label: 'Karnataka'
     },
     {
-      value: 'new-york',
-      label: 'New York'
+      value: 'Odisha',
+      label: 'Odisha'
     },
     {
-      value: 'san-francisco',
-      label: 'San Francisco'
+      value: 'Kerela',
+      label: 'Kerela'
+    },
+    {
+      value: 'Tamil Nadu',
+      label: 'Tamil Nadu'
     }
   ];
 

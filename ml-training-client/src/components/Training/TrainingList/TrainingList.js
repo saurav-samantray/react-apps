@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from "clsx";
-import moment from "moment";
+//import moment from "moment";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
@@ -18,12 +18,12 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Tooltip,
-  TableSortLabel,
+  //Tooltip,
+  //TableSortLabel,
 } from "@material-ui/core";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
-import mockData from "./data";
+//import mockData from "./data";
 import { StatusBullet } from "components";
 
 const useStyles = makeStyles((theme) => ({
@@ -72,11 +72,7 @@ const TrainingList = (props) => {
         dispatch(fetchTrainings(data))
     },[])
   //console.log(trainingState.data.length)
-  if(trainingState.loading || trainingState.data.jobDetails == undefined){
-        return <React.Fragment>
-        <h4>loading</h4>
-    </React.Fragment>   
-  }else{
+
     return (
       <Card {...rest} className={clsx(classes.root, className)}>
         <CardHeader title="Training History" />
@@ -94,7 +90,7 @@ const TrainingList = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {trainingState.data.jobDetails.map((job) => (
+                  {trainingState.data.jobDetails && trainingState.data.jobDetails.map((job) => (
                     <TableRow hover key={job.execution_id}>
                       <TableCell>{job.execution_id}</TableCell>
                       <TableCell>NER</TableCell>
@@ -128,7 +124,7 @@ const TrainingList = (props) => {
         </CardActions>
       </Card>
     );
-  }
+
 
 };
 

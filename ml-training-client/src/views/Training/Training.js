@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import { NewTraining, TrainingList } from '../../components/Training';
-import { CustomizedSnackbars } from "../../components/notificationbox/notificationbox";
+import { CustomizedSnackbars } from "../../components/utils/notificationbox/notificationbox";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +39,7 @@ const Training = () => {
           <TrainingList />
         </Grid>
       </Grid>
-      {/* <CustomizedSnackbars message="hei am test!" severity="success" vertical='bottom' horizontal='right'></CustomizedSnackbars>    */}
+      { <CustomizedSnackbars message="hei am test!" severity="success" vertical='bottom' horizontal='right'></CustomizedSnackbars>    }
     </div>
   );
 };

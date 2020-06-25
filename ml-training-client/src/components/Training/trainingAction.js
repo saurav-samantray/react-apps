@@ -1,5 +1,5 @@
 import { getTrainingListApi, createTrainingApi} from "../../api/trainingApi";
-import { showNotification } from "../../components/notificationbox/notificationAction";
+import { showNotification } from "../../components/utils/notificationbox/notificationAction";
 //import FileSaver, { saveAs } from "file-saver";
 export const actionTypes ={
     FETCH_TRAININGS_ACTION :'GET_TRAININGS_ACTION',
@@ -50,7 +50,7 @@ export const fetchTrainings =(data)=>{
             console.log(data)
         const result = await getTrainingListApi(data);
         console.log(result);
-        if(result.status==200){
+        if(result.status===200){
             dispatch(fetchTrainingsSuccess(result.data))
         } else if(result.data.non_field_errors){
             let notificationData ={
@@ -79,7 +79,7 @@ export const createTraining = (data)=>{
         try {
             dispatch(createTrainingAction());
             const result = await createTrainingApi(data);
-            if(result.status == 201){
+            if(result.status === 201){
                 dispatch(createTrainingSuccess())
                 let notificationData = {
                     message:'Job created successfully',

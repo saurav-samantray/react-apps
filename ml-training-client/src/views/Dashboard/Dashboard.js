@@ -6,12 +6,12 @@ import {
   Model,
   Dataset,
   AnnotationProgress,
-  TasksProgress,
+  //TasksProgress,
   TotalProfit,
   LatestSales,
   UsersByDevice,
   LatestProducts,
-  LatestOrders
+  //LatestOrders
 } from './components';
 
 const useStyles = makeStyles(theme => ({

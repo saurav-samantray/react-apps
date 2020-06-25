@@ -13,12 +13,12 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
+//import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
 const schema = {
-  email: {
+  username: {
     presence: { allowEmpty: false, message: 'is required' },
-    email: true,
+    email: false,
     length: {
       maximum: 64
     }
@@ -206,63 +206,24 @@ const SignIn = props => {
               >
                 <Typography
                   className={classes.title}
+                  align="center"
                   variant="h2"
                 >
                   Sign in
                 </Typography>
-                <Typography
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  Sign in with social media
-                </Typography>
-                <Grid
-                  className={classes.socialButtons}
-                  container
-                  spacing={2}
-                >
-                  <Grid item>
-                    <Button
-                      color="primary"
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <FacebookIcon className={classes.socialIcon} />
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <GoogleIcon className={classes.socialIcon} />
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Typography
-                  align="center"
-                  className={classes.sugestion}
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  or login with email address
-                </Typography>
+
                 <TextField
                   className={classes.textField}
-                  error={hasError('email')}
+                  error={hasError('username')}
                   fullWidth
                   helperText={
-                    hasError('email') ? formState.errors.email[0] : null
+                    hasError('username') ? formState.errors.username[0] : null
                   }
-                  label="Email address"
-                  name="email"
+                  label="Username"
+                  name="username"
                   onChange={handleChange}
                   type="text"
-                  value={formState.values.email || ''}
+                  value={formState.values.username || ''}
                   variant="outlined"
                 />
                 <TextField

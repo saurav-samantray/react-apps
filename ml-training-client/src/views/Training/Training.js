@@ -39,7 +39,7 @@ const Training = () => {
           <TrainingList />
         </Grid>
       </Grid>
-      { <CustomizedSnackbars message="hei am test!" severity="success" vertical='bottom' horizontal='right'></CustomizedSnackbars>    }
+      <CustomizedSnackbars  vertical='top' horizontal='right'></CustomizedSnackbars>
     </div>
   );
 };

@@ -9,3 +9,8 @@ export { default as SignUp } from './SignUp';
 export { default as Typography } from './Typography';
 export { default as UserList } from './UserList';
 export { default as Training } from './Training';
+export { ProjectHome as  ProjectHome } from './Project';
+export { ProjectDetail as  ProjectDetail } from './Project';
+export { DatasetComponent as  DatasetComponent } from './Project';
+export { LabelsComponent as  LabelsComponent } from './Project';
+export { AnnotationComponent as AnnotationComponent} from './Project';

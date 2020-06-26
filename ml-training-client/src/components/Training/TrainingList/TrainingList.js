@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const statusColors = {
-  COMPLETED: 'success',
+  SUCCESS: 'success',
   STARTED: 'info',
   FAILED: 'danger'
 };
@@ -63,7 +63,7 @@ const TrainingList = (props) => {
 
   //const [jobs] = [{}];
 
-  console.log(trainingState)
+  //console.log(trainingState)
 
   useEffect(()=>{
         let data={
@@ -71,11 +71,11 @@ const TrainingList = (props) => {
         }
         dispatch(fetchTrainings(data))
     },[])
-  //console.log(trainingState.data.length)
+  //console.log().length)
 
     return (
       <Card {...rest} className={clsx(classes.root, className)}>
-        <CardHeader title="Training History" />
+        <CardHeader title="Training History (Last 5)" />
         <Divider />
         <CardContent className={classes.content}>
           <PerfectScrollbar>
@@ -90,18 +90,18 @@ const TrainingList = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {trainingState.data.jobDetails && trainingState.data.jobDetails.map((job) => (
+                  {Object.entries(trainingState.data) != 0 && trainingState.data.slice(Math.max(trainingState.data.length - 5, 0)).map((job) => (
                     <TableRow hover key={job.execution_id}>
-                      <TableCell>{job.execution_id}</TableCell>
+                      <TableCell>{job.name}</TableCell>
                       <TableCell>NER</TableCell>
                       <TableCell>
                         <div className={classes.statusContainer}>
                           <StatusBullet
                             className={classes.status}
-                            color={statusColors[job.job_status]}
+                            color={statusColors[job.status]}
                             size="sm"
                           />
-                          {job.job_status}
+                          {job.status}
                         </div>
                       </TableCell>
                       <TableCell>

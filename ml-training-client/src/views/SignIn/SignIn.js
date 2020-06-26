@@ -1,280 +1,151 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import validate from 'validate.js';
-import { makeStyles } from '@material-ui/styles';
+import React from "react";
 import {
-  Grid,
   Button,
-  IconButton,
+  Avatar,
   TextField,
+  Box,
+  Grid,
+  Typography,
   Link,
-  Typography
-} from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+  makeStyles,
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { Form, Formik, Field } from "formik";
+import { object, string } from "yup";
 
-//import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginToken } from "../../components/auth/loginAction";
 
-const schema = {
-  username: {
-    presence: { allowEmpty: false, message: 'is required' },
-    email: false,
-    length: {
-      maximum: 64
-    }
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  password: {
-    presence: { allowEmpty: false, message: 'is required' },
-    length: {
-      maximum: 128
-    }
-  }
-};
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    height: '100%'
-  },
-  grid: {
-    height: '100%'
-  },
-  quoteContainer: {
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  },
-  quote: {
-    backgroundColor: theme.palette.neutral,
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundImage: 'url(/images/auth.jpg)',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center'
-  },
-  quoteInner: {
-    textAlign: 'center',
-    flexBasis: '600px'
-  },
-  quoteText: {
-    color: theme.palette.white,
-    fontWeight: 300
-  },
-  name: {
-    marginTop: theme.spacing(3),
-    color: theme.palette.white
-  },
-  bio: {
-    color: theme.palette.white
-  },
-  contentContainer: {},
-  content: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  contentHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingTop: theme.spacing(5),
-    paddingBototm: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  },
-  logoImage: {
-    marginLeft: theme.spacing(4)
-  },
-  contentBody: {
-    flexGrow: 1,
-    display: 'flex',
-    alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center'
-    }
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    paddingLeft: 100,
-    paddingRight: 100,
-    paddingBottom: 125,
-    flexBasis: 700,
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2)
-    }
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
-  title: {
-    marginTop: theme.spacing(3)
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
-  socialButtons: {
-    marginTop: theme.spacing(3)
-  },
-  socialIcon: {
-    marginRight: theme.spacing(1)
-  },
-  sugestion: {
-    marginTop: theme.spacing(2)
-  },
-  textField: {
-    marginTop: theme.spacing(2)
-  },
-  signInButton: {
-    margin: theme.spacing(2, 0)
-  }
 }));
 
-const SignIn = props => {
-  const { history } = props;
+const initialValues = {
+  username: "",
+  password: "",
+};
 
-  const classes = useStyles();
-
-  const [formState, setFormState] = useState({
-    isValid: false,
-    values: {},
-    touched: {},
-    errors: {}
+let getLoginTokenFunction;
+let redirectUser;
+const LoginFunction = async (values, helperFunctions) => {
+  return new Promise((resolve, reject) => {
+    resolve();
+    getLoginTokenFunction(values, redirectUser);
+    helperFunctions.setSubmitting(false);
   });
+};
 
-  useEffect(() => {
-    const errors = validate(formState.values, schema);
+const SignIn = (props) => {
+  console.log("props inside login form", props);
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  getLoginTokenFunction = (data, callback) =>
+    dispatch(getLoginToken(data, callback));
+  const userLoginObject = useSelector((state) => state.loginReducer);
 
-    setFormState(formState => ({
-      ...formState,
-      isValid: errors ? false : true,
-      errors: errors || {}
-    }));
-  }, [formState.values]);
-
-  const handleBack = () => {
-    history.goBack();
+  redirectUser = () => {
+    props.history.push({
+      pathname: "/dashboard",
+    });
   };
-
-  const handleChange = event => {
-    event.persist();
-
-    setFormState(formState => ({
-      ...formState,
-      values: {
-        ...formState.values,
-        [event.target.name]:
-          event.target.type === 'checkbox'
-            ? event.target.checked
-            : event.target.value
-      },
-      touched: {
-        ...formState.touched,
-        [event.target.name]: true
-      }
-    }));
-  };
-
-  const handleSignIn = event => {
-    event.preventDefault();
-    history.push('/');
-  };
-
-  const hasError = field =>
-    formState.touched[field] && formState.errors[field] ? true : false;
-
   return (
-    <div className={classes.root}>
-      <Grid
-        alignContent="center"
-        className={classes.grid}
-        container
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={object({
+          username: string().required(),
+          password: string().required(),
+        })}
+        onSubmit={(values, helperFunctions) => {
+          LoginFunction(values, helperFunctions);
+        }}
       >
+        {({ values, errors, touched, isSubmitting, isValidating }) => (
+          <Form>
+            <Field
+              name="username"
+              as={TextField}
+              label="Username"
+              error={touched.username && errors.username ? true : false}
+              helperText={
+                touched.username && errors.username ? errors.username : ""
+              }
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+            ></Field>
 
-        <Grid
-          className={classes.content}
-          item
-          alignContent="center"
-          lg={7}
-          xs={12}
-        >
-          <div className={classes.content}>
-            <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
-            </div>
-            <div className={classes.contentBody}>
-              <form
-                className={classes.form}
-                onSubmit={handleSignIn}
-              >
-                <Typography
-                  className={classes.title}
-                  align="center"
-                  variant="h2"
-                >
-                  Sign in
-                </Typography>
+            {/* <ErrorMessage name='username'></ErrorMessage> */}
+            <Field
+              name="password"
+              as={TextField}
+              label="Password"
+              error={touched.password && errors.password ? true : false}
+              helperText={
+                touched.password && errors.password ? errors.password : ""
+              }
+              variant="outlined"
+              type="password"
+              margin="normal"
+              required
+              fullWidth
+            ></Field>
+            {/* {touched.password  && errors.password ? errors.password : null} */}
 
-                <TextField
-                  className={classes.textField}
-                  error={hasError('username')}
-                  fullWidth
-                  helperText={
-                    hasError('username') ? formState.errors.username[0] : null
-                  }
-                  label="Username"
-                  name="username"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.username || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('password')}
-                  fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
-                  label="Password"
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  value={formState.values.password || ''}
-                  variant="outlined"
-                />
-                <Button
-                  className={classes.signInButton}
-                  color="primary"
-                  disabled={!formState.isValid}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Sign in now
-                </Button>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  Don't have an account?{' '}
-                  <Link
-                    component={RouterLink}
-                    to="/sign-up"
-                    variant="h6"
-                  >
-                    Sign up
-                  </Link>
-                </Typography>
-              </form>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
+            {userLoginObject && userLoginObject.error ? (
+              <Typography>{userLoginObject.error}</Typography>
+            ) : (
+              ""
+            )}
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disabled={isSubmitting}
+            >
+              Submit
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link variant="body2">Forgot password?</Link>
+              </Grid>
+              <Grid item>
+                <Link variant="body2">{"Don't have an account? Sign Up"}</Link>
+              </Grid>
+            </Grid>
+            <Box mt={5}>{/* <Copyright /> */}</Box>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-SignIn.propTypes = {
-  history: PropTypes.object
-};
-
-export default withRouter(SignIn);
+export default SignIn;

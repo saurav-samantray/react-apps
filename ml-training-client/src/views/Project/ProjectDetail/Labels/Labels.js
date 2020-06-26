@@ -32,9 +32,9 @@ import {
   ViewColumn,
 } from "@material-ui/icons";
 
-import { fetchLabels, patchLabel, deleteLabel } from "./labelsAction";
-import { LabelActionBar } from "./labelsActionBar/labelsActionBar";
-import { ColorSelectorElem } from "./colorSelector";
+import { fetchLabels, patchLabel, deleteLabel } from "../../../../components/labels/labelsAction";
+import { LabelActionBar } from "../../../../components/labels/labelsActionBar/labelsActionBar";
+import { ColorSelectorElem } from "../../../../components/labels/colorSelector";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),

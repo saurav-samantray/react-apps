@@ -64,10 +64,10 @@ const ProjectHome = (props) => {
     }
 
     return <React.Fragment>
-                <Grid container >
+                <Grid container>
                         <Grid item  md={12} xs={12}>
                         
-                            <Paper className={classes.BtnGrpPaper } elevation={1}>
+                            <Paper className={classes.BtnGrpPaper} elevation={1}>
 
                             <CRUDButtonGrp ButtonAction1={handleOpen} ButtonAction2={deleteProjectItems} ></CRUDButtonGrp>
                             </Paper>

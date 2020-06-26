@@ -29,7 +29,7 @@ const NewTraining = (props) => {
   //let trainingState = useSelector((state)=>state.trainingReducer);
 
   const [values, setValues] = useState({
-    projectName: "Hair Care Demo",
+    name: "Hair Care Demo",
     description: "Haircare training for July demo",
     dataset: "core_haircare_ds",
     comments: " ",
@@ -52,7 +52,7 @@ const NewTraining = (props) => {
   };
 
   const onFormDataSubmit =()=>{
-        console.log(values.projectName);
+        console.log(values.name);
         createTrainingAction(values)
   }
 
@@ -81,10 +81,10 @@ const NewTraining = (props) => {
                 //helperText="Named of the project"
                 label="Project name"
                 margin="dense"
-                name="projectName"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.projectName}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>

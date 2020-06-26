@@ -212,7 +212,7 @@ const CustomTable = (props) => {
 
   const redirectProject = (row) =>{
     props.history.push({
-      pathname: `/project/${row.id}`
+      pathname: `/projects/${row.id}`
   })
   }
 

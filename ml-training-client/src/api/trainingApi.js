@@ -7,11 +7,11 @@ const client = new ApiClient();
 
 
 export const getTrainingListApi = ()=>{
-    return client.get('/training/ner')
+    return client.get('/nlp/training')
 }
 
 export const createTrainingApi = data =>{
-    return client.post(`/training/ner`,data)
+    return client.post(`/nlp/training`,data)
 }
 
 /*

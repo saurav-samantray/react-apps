@@ -15,12 +15,14 @@ import {
   Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
-  NotFound as NotFoundView
+  NotFound as NotFoundView,
+  ProjectHome as ProjectHomeView,
+  ProjectDetail as ProjectDetailView,
+  DatasetComponent as ProjectDatasetView,
+  LabelsComponent as ProjectLabelsView,
+  AnnotationComponent as ProjectAnnotationView
 } from './views';
 
-import { 
-  ProjectHome as ProjectHomeView 
-} from './views/Project';
 
 const Routes = () => {
   return (
@@ -101,6 +103,30 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/projects"
+      />
+      <RouteWithLayout
+        component={ProjectDetailView}
+        exact
+        layout={MainLayout}
+        path="/projects/:projectId"
+      />
+      <RouteWithLayout
+        component={ProjectDatasetView}
+        exact
+        layout={MainLayout}
+        path="/projects/:projectId/dataset"
+      />
+      <RouteWithLayout
+        component={ProjectLabelsView}
+        exact
+        layout={MainLayout}
+        path="/projects/:projectId/labels"
+      />
+      <RouteWithLayout
+        component={ProjectAnnotationView}
+        exact
+        layout={MainLayout}
+        path="/projects/:projectId/annotations"
       />
       <Redirect to="/not-found" />
     </Switch>

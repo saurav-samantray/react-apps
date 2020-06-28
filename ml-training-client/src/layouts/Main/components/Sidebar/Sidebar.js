@@ -13,6 +13,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 //import LockOpenIcon from '@material-ui/icons/LockOpen';
 import BuildIcon from '@material-ui/icons/Build';
 import DescriptionIcon from '@material-ui/icons/Description';
+import FormatPaintIcon from '@material-ui/icons/FormatPaint';
 
 import { Profile, SidebarNav } from './components';
 
@@ -49,6 +50,11 @@ const Sidebar = props => {
       title: 'Dashboard',
       href: '/dashboard',
       icon: <DashboardIcon />
+    },
+    {
+      title: 'Data Pre-Processing',
+      href: '/data-pre-processing',
+      icon: <FormatPaintIcon />
     },
     {
       title: 'Training',

@@ -16,6 +16,7 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
+  Preprocessing as DataPreprocessingView,
   ProjectHome as ProjectHomeView,
   ProjectDetail as ProjectDetailView,
   DatasetComponent as ProjectDatasetView,
@@ -97,6 +98,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/not-found"
+      />
+      <RouteWithLayout
+        component={DataPreprocessingView}
+        exact
+        layout={MainLayout}
+        path="/data-pre-processing"
       />
       <RouteWithLayout
         component={ProjectHomeView}

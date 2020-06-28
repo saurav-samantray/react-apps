@@ -14,3 +14,4 @@ export { ProjectDetail as  ProjectDetail } from './Project';
 export { DatasetComponent as  DatasetComponent } from './Project';
 export { LabelsComponent as  LabelsComponent } from './Project';
 export { AnnotationComponent as AnnotationComponent} from './Project';
+export { default as Preprocessing} from './Preprocessing';

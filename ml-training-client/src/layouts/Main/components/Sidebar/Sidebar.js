@@ -57,14 +57,14 @@ const Sidebar = props => {
       icon: <FormatPaintIcon />
     },
     {
-      title: 'Training',
-      href: '/training',
-      icon: <BuildIcon />
-    },
-    {
       title: 'Projects',
       href: '/projects',
       icon: <DescriptionIcon />
+    },
+    {
+      title: 'Training',
+      href: '/training',
+      icon: <BuildIcon />
     }/*,
     {
       title: 'Users',

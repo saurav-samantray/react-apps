@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 
 //import { NewTraining, TrainingList } from '../../components/Training';
 import { CustomizedSnackbars } from "../../components/utils/notificationbox/notificationbox";
-
+import {UploadFormComponent } from "../../components/Preprocessing"
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -27,7 +27,7 @@ const Preprocessing = () => {
           xl={4}
           xs={12}
         >
-          Upload Data Panel
+          <UploadFormComponent />
         </Grid>
         <Grid
           item
